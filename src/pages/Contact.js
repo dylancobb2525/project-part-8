@@ -8,7 +8,7 @@ function Contact() {
             <PageHeader 
                 title="Contact Me" 
                 subtitle="Get in touch with me about travel recommendations or questions"
-                backgroundImage="/images/hero.png"
+                backgroundImage={`${process.env.PUBLIC_URL}/images/hero.png`}
             />
             
             <main id="main-content">

@@ -16,7 +16,7 @@ function Home() {
     return (
         <div>
             <section id="hero-section">
-                <img src="/images/hero.png" alt="Travel Hero" id="hero-image" />
+                <img src={`${process.env.PUBLIC_URL}/images/hero.png`} alt="Travel Hero" id="hero-image" />
                 <div className="hero-overlay">
                     <h2>DESTINATIONS WITH DYLAN</h2>
                     <p>Explore the world through my travels</p>
@@ -28,19 +28,19 @@ function Home() {
                     <h2>Recent Destinations</h2>
                     <div className="destination-cards">
                         <DestinationCard 
-                            image="/images/nyc.png"
+                            image={`${process.env.PUBLIC_URL}/images/nyc.png`}
                             name="New York City"
-                            onClick={() => expandImage('/images/nyc.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/nyc.png`)}
                         />
                         <DestinationCard 
-                            image="/images/stbart.png"
+                            image={`${process.env.PUBLIC_URL}/images/stbart.png`}
                             name="St. Barths"
-                            onClick={() => expandImage('/images/stbart.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/stbart.png`)}
                         />
                         <DestinationCard 
-                            image="/images/stmart.png"
+                            image={`${process.env.PUBLIC_URL}/images/stmart.png`}
                             name="St. Maarten"
-                            onClick={() => expandImage('/images/stmart.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/stmart.png`)}
                         />
                     </div>
                 </section>

@@ -20,47 +20,47 @@ function BucketListLocations() {
             <PageHeader 
                 title="More Bucket List Destinations" 
                 subtitle="Dream destinations waiting to be explored"
-                backgroundImage="/images/hero.png"
+                backgroundImage={`${process.env.PUBLIC_URL}/images/hero.png`}
             />
             
             <main id="main-content">
                 <section id="locations-content">
                     <div className="locations-grid">
                         <LocationCardLarge
-                            image="/images/flor.png"
+                            image={`${process.env.PUBLIC_URL}/images/flor.png`}
                             title="Florence, Italy"
                             description="I have never been to Europe and I want to start with Florence because it is where I plan to study abroad. Between the sight seeing and good food, this is at the top of my list."
-                            onClick={() => expandImage('/images/flor.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/flor.png`)}
                         />
                         <LocationCardLarge
-                            image="/images/paris.png"
+                            image={`${process.env.PUBLIC_URL}/images/paris.png`}
                             title="Paris, France"
                             description="The food, shopping, and landmarks such as the Eiffel Tower are all things that I hope to experience in the next few years."
-                            onClick={() => expandImage('/images/paris.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/paris.png`)}
                         />
                         <LocationCardLarge
-                            image="/images/hawaii.png"
+                            image={`${process.env.PUBLIC_URL}/images/hawaii.png`}
                             title="Hawaii, USA"
                             description="I have been to a handful of islands, but this island is definitely a must see for me one day. The nature here looks insane."
-                            onClick={() => expandImage('/images/hawaii.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/hawaii.png`)}
                         />
                         <LocationCardLarge
-                            image="/images/bora.png"
+                            image={`${process.env.PUBLIC_URL}/images/bora.png`}
                             title="Bora Bora, French Polynesia"
                             description="The water looks crystal clear and seems like a dream for me to experience. This is a trip I hope to take in my later 20s."
-                            onClick={() => expandImage('/images/bora.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/bora.png`)}
                         />
                         <LocationCardLarge
-                            image="/images/moroc.png"
+                            image={`${process.env.PUBLIC_URL}/images/moroc.png`}
                             title="Morocco Desert"
                             description="When I study abroad I hope to visit Morocco and ride a camel in the desert, as it is such a unique experience and something I have never been able to do."
-                            onClick={() => expandImage('/images/moroc.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/moroc.png`)}
                         />
                         <LocationCardLarge
-                            image="/images/dubai.png"
+                            image={`${process.env.PUBLIC_URL}/images/dubai.png`}
                             title="Dubai, UAE"
                             description="This is a trip I plan to take later on in my life, but the luxury and insane architecture makes it so enticing to visit."
-                            onClick={() => expandImage('/images/dubai.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/dubai.png`)}
                         />
                     </div>
                     

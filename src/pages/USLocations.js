@@ -20,47 +20,47 @@ function USLocations() {
             <PageHeader 
                 title="United States Locations" 
                 subtitle="Explore all my US travel destinations"
-                backgroundImage="/images/hero.png"
+                backgroundImage={`${process.env.PUBLIC_URL}/images/hero.png`}
             />
             
             <main id="main-content">
                 <section id="locations-content">
                     <div className="locations-grid">
                         <LocationCardLarge
-                            image="/images/fortl.png"
+                            image={`${process.env.PUBLIC_URL}/images/fortl.png`}
                             title="Fort Lauderdale, Florida"
                             description="This was a trip I went on with some hometown friends after graduating highschool."
-                            onClick={() => expandImage('/images/fortl.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/fortl.png`)}
                         />
                         <LocationCardLarge
-                            image="/images/boca.png"
+                            image={`${process.env.PUBLIC_URL}/images/boca.png`}
                             title="Boca Raton, Florida"
                             description="This is where my mom's side of the family lives. I go atleast once per year."
-                            onClick={() => expandImage('/images/boca.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/boca.png`)}
                         />
                         <LocationCardLarge
-                            image="/images/nyc.png"
+                            image={`${process.env.PUBLIC_URL}/images/nyc.png`}
                             title="New York City, NY"
                             description="I live an hour from New York City, so I go as much as possible. This is a specific picture in Midtown, I really enjoy going to the SoHo area."
-                            onClick={() => expandImage('/images/nyc.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/nyc.png`)}
                         />
                         <LocationCardLarge
-                            image="/images/dc.png"
+                            image={`${process.env.PUBLIC_URL}/images/dc.png`}
                             title="Washington, DC"
                             description="I went here a couple of years ago it was a really cool to see the nations capital."
-                            onClick={() => expandImage('/images/dc.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/dc.png`)}
                         />
                         <LocationCardLarge
-                            image="/images/char.png"
+                            image={`${process.env.PUBLIC_URL}/images/char.png`}
                             title="Charleston, SC"
                             description="I visit here on weekends when I am not busy at school. Beautiful city."
-                            onClick={() => expandImage('/images/char.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/char.png`)}
                         />
                         <LocationCardLarge
-                            image="/images/gat.png"
+                            image={`${process.env.PUBLIC_URL}/images/gat.png`}
                             title="Gatlinburg, TN"
                             description="I went on a mountain weekend trip here with my fraternity, it was so awesome hiking the mountains."
-                            onClick={() => expandImage('/images/gat.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/gat.png`)}
                         />
                     </div>
                     

@@ -7,13 +7,13 @@ function About() {
         <div>
             <PageHeader 
                 title="About Me" 
-                backgroundImage="/images/hero.png"
+                backgroundImage={`${process.env.PUBLIC_URL}/images/hero.png`}
             />
             
             <main id="main-content">
                 <section id="about-content">
                     <div className="headshot-container">
-                        <img src="/images/headshot.png" alt="Dylan Headshot" id="headshot" />
+                        <img src={`${process.env.PUBLIC_URL}/images/headshot.png`} alt="Dylan Headshot" id="headshot" />
                     </div>
                     
                     <div className="about-text">

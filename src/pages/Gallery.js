@@ -18,95 +18,95 @@ function Gallery() {
         <div>
             <PageHeader 
                 title="Gallery" 
-                backgroundImage="/images/hero.png"
+                backgroundImage={`${process.env.PUBLIC_URL}/images/hero.png`}
             />
             
             <main id="main-content">
                 <section id="gallery-content">
                     <div className="gallery-grid">
                         <GalleryItem 
-                            image="/images/nyc.png" 
+                            image={`${process.env.PUBLIC_URL}/images/nyc.png`} 
                             alt="New York City" 
                             size="large"
-                            onClick={() => expandImage('/images/nyc.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/nyc.png`)}
                         />
                         <GalleryItem 
-                            image="/images/aruba.png" 
+                            image={`${process.env.PUBLIC_URL}/images/aruba.png`} 
                             alt="Aruba" 
                             size="medium"
-                            onClick={() => expandImage('/images/aruba.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/aruba.png`)}
                         />
                         <GalleryItem 
-                            image="/images/stbart.png" 
+                            image={`${process.env.PUBLIC_URL}/images/stbart.png`} 
                             alt="St Barths" 
                             size="small"
-                            onClick={() => expandImage('/images/stbart.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/stbart.png`)}
                         />
                         <GalleryItem 
-                            image="/images/fortl.png" 
+                            image={`${process.env.PUBLIC_URL}/images/fortl.png`} 
                             alt="Fort Lauderdale" 
                             size="medium"
-                            onClick={() => expandImage('/images/fortl.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/fortl.png`)}
                         />
                         <GalleryItem 
-                            image="/images/stmart.png" 
+                            image={`${process.env.PUBLIC_URL}/images/stmart.png`} 
                             alt="St Maarten" 
                             size="large"
-                            onClick={() => expandImage('/images/stmart.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/stmart.png`)}
                         />
                         <GalleryItem 
-                            image="/images/boca.png" 
+                            image={`${process.env.PUBLIC_URL}/images/boca.png`} 
                             alt="Boca Raton" 
                             size="small"
-                            onClick={() => expandImage('/images/boca.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/boca.png`)}
                         />
                         <GalleryItem 
-                            image="/images/dc.png" 
+                            image={`${process.env.PUBLIC_URL}/images/dc.png`} 
                             alt="Washington DC" 
                             size="medium"
-                            onClick={() => expandImage('/images/dc.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/dc.png`)}
                         />
                         <GalleryItem 
-                            image="/images/ang.png" 
+                            image={`${process.env.PUBLIC_URL}/images/ang.png`} 
                             alt="Anguilla" 
                             size="small"
-                            onClick={() => expandImage('/images/ang.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/ang.png`)}
                         />
                         <GalleryItem 
-                            image="/images/bermuda.png" 
+                            image={`${process.env.PUBLIC_URL}/images/bermuda.png`} 
                             alt="Bermuda" 
                             size="large"
-                            onClick={() => expandImage('/images/bermuda.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/bermuda.png`)}
                         />
                         <GalleryItem 
-                            image="/images/char.png" 
+                            image={`${process.env.PUBLIC_URL}/images/char.png`} 
                             alt="Charleston" 
                             size="medium"
-                            onClick={() => expandImage('/images/char.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/char.png`)}
                         />
                         <GalleryItem 
-                            image="/images/gat.png" 
+                            image={`${process.env.PUBLIC_URL}/images/gat.png`} 
                             alt="Gatlinburg" 
                             size="small"
-                            onClick={() => expandImage('/images/gat.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/gat.png`)}
                         />
                         <GalleryItem 
-                            image="/images/punta.png" 
+                            image={`${process.env.PUBLIC_URL}/images/punta.png`} 
                             alt="Punta Cana" 
                             size="medium"
-                            onClick={() => expandImage('/images/punta.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/punta.png`)}
                         />
                         <GalleryItem 
-                            image="/images/riv.png" 
+                            image={`${process.env.PUBLIC_URL}/images/riv.png`} 
                             alt="Riviera Maya" 
                             size="large"
-                            onClick={() => expandImage('/images/riv.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/riv.png`)}
                         />
                         <GalleryItem 
-                            image="/images/niagra.png" 
+                            image={`${process.env.PUBLIC_URL}/images/niagra.png`} 
                             alt="Niagara Falls" 
                             size="small"
-                            onClick={() => expandImage('/images/niagra.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/niagra.png`)}
                         />
                     </div>
                 </section>

@@ -20,59 +20,59 @@ function InternationalLocations() {
             <PageHeader 
                 title="International Locations" 
                 subtitle="Discover destinations around the globe"
-                backgroundImage="/images/hero.png"
+                backgroundImage={`${process.env.PUBLIC_URL}/images/hero.png`}
             />
             
             <main id="main-content">
                 <section id="locations-content">
                     <div className="locations-grid">
                         <LocationCardLarge
-                            image="/images/aruba.png"
+                            image={`${process.env.PUBLIC_URL}/images/aruba.png`}
                             title="Aruba"
                             description="I have been to Aruba several times. The weather is always picture perfect and some of the best restaurants I've been to on an island."
-                            onClick={() => expandImage('/images/aruba.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/aruba.png`)}
                         />
                         <LocationCardLarge
-                            image="/images/stmart.png"
+                            image={`${process.env.PUBLIC_URL}/images/stmart.png`}
                             title="St Maarten"
                             description="A beautiful island with amazing views and super friendly locals."
-                            onClick={() => expandImage('/images/stmart.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/stmart.png`)}
                         />
                         <LocationCardLarge
-                            image="/images/stbart.png"
+                            image={`${process.env.PUBLIC_URL}/images/stbart.png`}
                             title="St Barths"
                             description="A small yet luxurious island that has unique shell beaches and tons of shopping."
-                            onClick={() => expandImage('/images/stbart.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/stbart.png`)}
                         />
                         <LocationCardLarge
-                            image="/images/ang.png"
+                            image={`${process.env.PUBLIC_URL}/images/ang.png`}
                             title="Anguilla"
                             description="What I would call a super niche island in the Caribbean. Has the best beaches I have ever seen and amazing coral reefs."
-                            onClick={() => expandImage('/images/ang.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/ang.png`)}
                         />
                         <LocationCardLarge
-                            image="/images/bermuda.png"
+                            image={`${process.env.PUBLIC_URL}/images/bermuda.png`}
                             title="Bermuda"
                             description="Crystal clear waters and beautiful beaches that are just a short cruise ride away. Would highly recommend."
-                            onClick={() => expandImage('/images/bermuda.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/bermuda.png`)}
                         />
                         <LocationCardLarge
-                            image="/images/punta.png"
+                            image={`${process.env.PUBLIC_URL}/images/punta.png`}
                             title="Punta Cana"
                             description="It has been a while since I have been here but it is a great mix of island vacation and party scene."
-                            onClick={() => expandImage('/images/punta.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/punta.png`)}
                         />
                         <LocationCardLarge
-                            image="/images/riv.png"
+                            image={`${process.env.PUBLIC_URL}/images/riv.png`}
                             title="Riviera Maya"
                             description="It has been almost 8 years since I last went to Mexico, but this was a really fun vacation."
-                            onClick={() => expandImage('/images/riv.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/riv.png`)}
                         />
                         <LocationCardLarge
-                            image="/images/niagra.png"
+                            image={`${process.env.PUBLIC_URL}/images/niagra.png`}
                             title="Niagara Falls"
                             description="Struggled to find a good picture from this trip, but for anyone living up north this is a must see destination."
-                            onClick={() => expandImage('/images/niagra.png')}
+                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/niagra.png`)}
                         />
                     </div>
                     
