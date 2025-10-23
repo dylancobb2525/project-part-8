@@ -1,0 +1,12 @@
+#content {
+    width: 100%;
+    margin: 0;
+    background: var(--white);
+}
+
+@media only screen and (max-width: 768px) {
+    #content {
+        width: 98%;
+        margin: 10px auto;
+    }
+}

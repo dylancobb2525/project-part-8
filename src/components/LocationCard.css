@@ -1,0 +1,25 @@
+.location-card {
+    text-align: center;
+}
+
+.location-card img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.location-card p {
+    margin: 0;
+    font-size: 0.9em;
+    color: var(--text-dark);
+}
+
+@media only screen and (max-width: 768px) {
+    .location-grid {
+        grid-template-columns: 1fr;
+    }
+}
+

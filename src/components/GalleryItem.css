@@ -1,0 +1,27 @@
+.gallery-item {
+    background: var(--white);
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-item.large { 
+    grid-row: span 2; 
+    grid-column: span 2; 
+}
+
+.gallery-item.medium { 
+    grid-row: span 2; 
+}
+
+.gallery-item.small { 
+    grid-row: span 1; 
+}
+

@@ -1,0 +1,55 @@
+.bucket-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.load-more-btn {
+    background: var(--black);
+    color: var(--white);
+    text-decoration: none;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1em;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 40px auto 0;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.load-more-btn:hover {
+    background: var(--text-dark);
+    color: var(--white);
+}
+
+#image-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#popup-img {
+    max-width: 90%;
+    max-height: 90%;
+    border: 3px solid white;
+    border-radius: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    .bucket-grid {
+        grid-template-columns: 1fr;
+    }
+}
+

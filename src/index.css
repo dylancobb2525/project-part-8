@@ -1,0 +1,29 @@
+:root {
+    --light-grey: #f8f9fa;
+    --white: #ffffff;
+    --black: #000000;
+    --text-dark: #333333;
+    --text-light: #666666;
+    --border-light: #e9ecef;
+    --border-grey: #e9ecef;
+    --overlay-dark: rgba(0, 0, 0, 0.7);
+    --primary-color: #2B91AD;
+    --navy-color: #2B91AD;
+}
+
+body {
+    background: var(--white);
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
