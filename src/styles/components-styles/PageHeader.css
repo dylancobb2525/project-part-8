@@ -1,0 +1,27 @@
+#page-header {
+    background-size: cover;
+    background-position: center;
+    color: var(--white);
+    text-align: center;
+    padding: 60px 40px;
+}
+
+#page-header h2 {
+    margin: 0;
+    font-size: 3em;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+#page-header p {
+    margin: 15px 0 0 0;
+    font-size: 1.3em;
+    font-weight: 300;
+}
+
+@media only screen and (max-width: 480px) {
+    #page-header h2 {
+        font-size: 2em;
+    }
+}
+
