@@ -1,18 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import PageHeader from '../components/PageHeader';
-import LocationCardLarge from '../components/LocationCardLarge';
 import '../styles/pages-styles/Locations.css';
 
 function USLocations() {
-    const [popupImage, setPopupImage] = useState(null);
+    const [destinations, setDestinations] = useState([]);
+    const [selectedDestination, setSelectedDestination] = useState(null);
 
-    const expandImage = (imgSrc) => {
-        setPopupImage(imgSrc);
+    useEffect(() => {
+        loadDestinations();
+    }, []);
+
+    const loadDestinations = async () => {
+        try {
+            const response = await axios.get('https://travel-server-yn4b.onrender.com/api/destinations');
+            // Filter to show only US destinations
+            const usDest = response.data.filter(dest => dest.category === "US");
+            setDestinations(usDest);
+        } catch (error) {
+            console.error('Error loading destinations:', error);
+        }
     };
 
-    const closePopup = () => {
-        setPopupImage(null);
+    const openModal = (destination) => {
+        setSelectedDestination(destination);
+    };
+
+    const closeModal = () => {
+        setSelectedDestination(null);
     };
 
     return (
@@ -26,42 +42,22 @@ function USLocations() {
             <main id="main-content">
                 <section id="locations-content">
                     <div className="locations-grid">
-                        <LocationCardLarge
-                            image={`${process.env.PUBLIC_URL}/images/fortl.png`}
-                            title="Fort Lauderdale, Florida"
-                            description="This was a trip I went on with some hometown friends after graduating highschool."
-                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/fortl.png`)}
-                        />
-                        <LocationCardLarge
-                            image={`${process.env.PUBLIC_URL}/images/boca.png`}
-                            title="Boca Raton, Florida"
-                            description="This is where my mom's side of the family lives. I go atleast once per year."
-                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/boca.png`)}
-                        />
-                        <LocationCardLarge
-                            image={`${process.env.PUBLIC_URL}/images/nyc.png`}
-                            title="New York City, NY"
-                            description="I live an hour from New York City, so I go as much as possible. This is a specific picture in Midtown, I really enjoy going to the SoHo area."
-                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/nyc.png`)}
-                        />
-                        <LocationCardLarge
-                            image={`${process.env.PUBLIC_URL}/images/dc.png`}
-                            title="Washington, DC"
-                            description="I went here a couple of years ago it was a really cool to see the nations capital."
-                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/dc.png`)}
-                        />
-                        <LocationCardLarge
-                            image={`${process.env.PUBLIC_URL}/images/char.png`}
-                            title="Charleston, SC"
-                            description="I visit here on weekends when I am not busy at school. Beautiful city."
-                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/char.png`)}
-                        />
-                        <LocationCardLarge
-                            image={`${process.env.PUBLIC_URL}/images/gat.png`}
-                            title="Gatlinburg, TN"
-                            description="I went on a mountain weekend trip here with my fraternity, it was so awesome hiking the mountains."
-                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/gat.png`)}
-                        />
+                        {destinations.map((destination) => (
+                            <div 
+                                key={destination._id} 
+                                className="location-card-large"
+                                onClick={() => openModal(destination)}
+                            >
+                                <img 
+                                    src={`https://travel-server-yn4b.onrender.com/${destination.main_image}`}
+                                    alt={destination.name}
+                                />
+                                <div className="location-info">
+                                    <h3>{destination.name}</h3>
+                                    <p>{destination.description}</p>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                     
                     <div className="back-section">
@@ -70,9 +66,18 @@ function USLocations() {
                 </section>
             </main>
             
-            {popupImage && (
-                <div id="image-popup" onClick={closePopup}>
-                    <img id="popup-img" src={popupImage} alt="Expanded view" />
+            {selectedDestination && (
+                <div className="modal" onClick={closeModal}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                        <span className="close" onClick={closeModal}>&times;</span>
+                        <img 
+                            src={`https://travel-server-yn4b.onrender.com/${selectedDestination.main_image}`}
+                            alt={selectedDestination.name}
+                            className="modal-image"
+                        />
+                        <h2>{selectedDestination.name}</h2>
+                        <p>{selectedDestination.description}</p>
+                    </div>
                 </div>
             )}
         </div>

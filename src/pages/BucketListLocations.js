@@ -1,18 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import PageHeader from '../components/PageHeader';
-import LocationCardLarge from '../components/LocationCardLarge';
 import '../styles/pages-styles/Locations.css';
 
 function BucketListLocations() {
-    const [popupImage, setPopupImage] = useState(null);
+    const [destinations, setDestinations] = useState([]);
+    const [selectedDestination, setSelectedDestination] = useState(null);
 
-    const expandImage = (imgSrc) => {
-        setPopupImage(imgSrc);
+    useEffect(() => {
+        loadDestinations();
+    }, []);
+
+    const loadDestinations = async () => {
+        try {
+            const response = await axios.get('https://travel-server-yn4b.onrender.com/api/destinations');
+            // Filter to show only Bucket List destinations
+            const bucketListDest = response.data.filter(dest => dest.category === "Bucket List");
+            setDestinations(bucketListDest);
+        } catch (error) {
+            console.error('Error loading destinations:', error);
+        }
     };
 
-    const closePopup = () => {
-        setPopupImage(null);
+    const openModal = (destination) => {
+        setSelectedDestination(destination);
+    };
+
+    const closeModal = () => {
+        setSelectedDestination(null);
     };
 
     return (
@@ -26,42 +42,22 @@ function BucketListLocations() {
             <main id="main-content">
                 <section id="locations-content">
                     <div className="locations-grid">
-                        <LocationCardLarge
-                            image={`${process.env.PUBLIC_URL}/images/flor.png`}
-                            title="Florence, Italy"
-                            description="I have never been to Europe and I want to start with Florence because it is where I plan to study abroad. Between the sight seeing and good food, this is at the top of my list."
-                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/flor.png`)}
-                        />
-                        <LocationCardLarge
-                            image={`${process.env.PUBLIC_URL}/images/paris.png`}
-                            title="Paris, France"
-                            description="The food, shopping, and landmarks such as the Eiffel Tower are all things that I hope to experience in the next few years."
-                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/paris.png`)}
-                        />
-                        <LocationCardLarge
-                            image={`${process.env.PUBLIC_URL}/images/hawaii.png`}
-                            title="Hawaii, USA"
-                            description="I have been to a handful of islands, but this island is definitely a must see for me one day. The nature here looks insane."
-                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/hawaii.png`)}
-                        />
-                        <LocationCardLarge
-                            image={`${process.env.PUBLIC_URL}/images/bora.png`}
-                            title="Bora Bora, French Polynesia"
-                            description="The water looks crystal clear and seems like a dream for me to experience. This is a trip I hope to take in my later 20s."
-                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/bora.png`)}
-                        />
-                        <LocationCardLarge
-                            image={`${process.env.PUBLIC_URL}/images/moroc.png`}
-                            title="Morocco Desert"
-                            description="When I study abroad I hope to visit Morocco and ride a camel in the desert, as it is such a unique experience and something I have never been able to do."
-                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/moroc.png`)}
-                        />
-                        <LocationCardLarge
-                            image={`${process.env.PUBLIC_URL}/images/dubai.png`}
-                            title="Dubai, UAE"
-                            description="This is a trip I plan to take later on in my life, but the luxury and insane architecture makes it so enticing to visit."
-                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/dubai.png`)}
-                        />
+                        {destinations.map((destination) => (
+                            <div 
+                                key={destination._id} 
+                                className="location-card-large"
+                                onClick={() => openModal(destination)}
+                            >
+                                <img 
+                                    src={`https://travel-server-yn4b.onrender.com/${destination.main_image}`}
+                                    alt={destination.name}
+                                />
+                                <div className="location-info">
+                                    <h3>{destination.name}</h3>
+                                    <p>{destination.description}</p>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                     
                     <div className="back-section">
@@ -70,9 +66,18 @@ function BucketListLocations() {
                 </section>
             </main>
             
-            {popupImage && (
-                <div id="image-popup" onClick={closePopup}>
-                    <img id="popup-img" src={popupImage} alt="Expanded view" />
+            {selectedDestination && (
+                <div className="modal" onClick={closeModal}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                        <span className="close" onClick={closeModal}>&times;</span>
+                        <img 
+                            src={`https://travel-server-yn4b.onrender.com/${selectedDestination.main_image}`}
+                            alt={selectedDestination.name}
+                            className="modal-image"
+                        />
+                        <h2>{selectedDestination.name}</h2>
+                        <p>{selectedDestination.description}</p>
+                    </div>
                 </div>
             )}
         </div>
