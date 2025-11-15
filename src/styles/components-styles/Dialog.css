@@ -1,0 +1,140 @@
+@import url("https://www.w3schools.com/w3css/4/w3.css");
+
+.w3-modal {
+    background-color: rgba(0, 0, 0, .6);
+}
+
+#dialog-section {
+  position: relative;
+}
+
+#add-dialog {
+  display: block;
+}
+
+#dialog-content {
+  margin-left: 10px;
+}
+
+.w3-modal-content {
+    background-color: white;
+}
+
+#add-dialog form {
+    padding: 20px;
+}
+
+#add-dialog h3 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#add-dialog p {
+    margin-bottom: 15px;
+}
+
+#add-dialog label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #333;
+}
+
+#add-dialog input[type="text"],
+#add-dialog textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: inherit;
+    background-color: #f9f9f9;
+}
+
+#add-dialog input[type="text"]:focus,
+#add-dialog textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+    background-color: white;
+}
+
+#add-dialog textarea {
+    resize: vertical;
+}
+
+#add-dialog input[type="file"] {
+    padding: 5px;
+}
+
+#add-dialog button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#add-dialog button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+#add-dialog form > p:last-child {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+#add-dialog form > p:last-child:not(:empty) {
+    background-color: #e3f2fd;
+    color: #1976d2;
+}
+
+#img-prev {
+  max-width: 100%;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+#img-prev-section {
+    margin-right: 20px;
+}
+
+.columns {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+@media only screen and (min-width: 600px) {
+  #img-prev-section {
+    flex: 1;
+  }
+
+  #img-prev {
+    max-width: 100%;
+  }
+
+  #img-upload {
+    flex: 6;
+  }
+}
+
+@media only screen and (max-width: 599px) {
+  .columns {
+    flex-direction: column;
+  }
+
+  #img-prev-section {
+    width: 100%;
+  }
+
+  #img-upload {
+    width: 100%;
+  }
+}
+

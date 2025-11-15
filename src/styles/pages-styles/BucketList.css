@@ -1,3 +1,20 @@
+#add-destination-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 20px 0;
+    display: block;
+    border-radius: 5px;
+}
+
+#add-destination-btn:hover {
+    background-color: #45a049;
+}
+
 .bucket-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;

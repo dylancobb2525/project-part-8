@@ -1,11 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import PageHeader from '../components/PageHeader';
 import BucketCard from '../components/BucketCard';
+import AddDestination from '../components/AddDestination';
 import '../styles/pages-styles/BucketList.css';
 
 function BucketList() {
     const [popupImage, setPopupImage] = useState(null);
+    const [showAddDialog, setShowAddDialog] = useState(false);
+    const [bucketListDestinations, setBucketListDestinations] = useState([]);
+
+    useEffect(() => {
+        loadBucketList();
+    }, []);
+
+    const loadBucketList = async () => {
+        try {
+            const response = await axios.get('https://travel-server-yn4b.onrender.com/api/destinations');
+            const bucketList = response.data.filter(dest => dest.category === "Bucket List");
+            setBucketListDestinations(bucketList);
+        } catch (error) {
+            console.error('Error loading bucket list:', error);
+        }
+    };
+
+    const openAddDialog = () => {
+        setShowAddDialog(true);
+    };
+
+    const closeAddDialog = () => {
+        setShowAddDialog(false);
+    };
+
+    const updateDestinations = (newDestination) => {
+        setBucketListDestinations((destinations) => [...destinations, newDestination]);
+    };
 
     const expandImage = (imgSrc) => {
         setPopupImage(imgSrc);
@@ -24,44 +54,28 @@ function BucketList() {
             />
             
             <main id="main-content">
+                <button id="add-destination-btn" onClick={openAddDialog}>+ Add New Destination</button>
+
+                {showAddDialog ? (
+                    <AddDestination 
+                        closeAddDialog={closeAddDialog}
+                        updateDestinations={updateDestinations}
+                    />
+                ) : (
+                    ""
+                )}
+
                 <section id="bucket-list-content">
                     <div className="bucket-grid">
-                        <BucketCard 
-                            image={`${process.env.PUBLIC_URL}/images/flor.png`}
-                            title="Florence, Italy"
-                            description="I have never been to Europe and I want to start with Florence because it is where I plan to study abroad. Between the sight seeing and good food, this is at the top of my list."
-                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/flor.png`)}
-                        />
-                        <BucketCard 
-                            image={`${process.env.PUBLIC_URL}/images/paris.png`}
-                            title="Paris, France"
-                            description="The food, shopping, and landmarks such as the Eiffel Tower are all things that I hope to experience in the next few years."
-                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/paris.png`)}
-                        />
-                        <BucketCard 
-                            image={`${process.env.PUBLIC_URL}/images/hawaii.png`}
-                            title="Hawaii, USA"
-                            description="I have been to a handful of islands, but this island is definitely a must see for me one day. The nature here looks insane."
-                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/hawaii.png`)}
-                        />
-                        <BucketCard 
-                            image={`${process.env.PUBLIC_URL}/images/bora.png`}
-                            title="Bora Bora, French Polynesia"
-                            description="The water looks crystal clear and seems like a dream for me to experience. This is a trip I hope to take in my later 20s."
-                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/bora.png`)}
-                        />
-                        <BucketCard 
-                            image={`${process.env.PUBLIC_URL}/images/moroc.png`}
-                            title="Morocco Desert"
-                            description="When I study abroad I hope to visit Morocco and ride a camel in the desert, as it is such a unique experience and something I have never been able to do."
-                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/moroc.png`)}
-                        />
-                        <BucketCard 
-                            image={`${process.env.PUBLIC_URL}/images/dubai.png`}
-                            title="Dubai, UAE"
-                            description="This is a trip I plan to take later on in my life, but the luxury and insane architecture makes it so enticing to visit."
-                            onClick={() => expandImage(`${process.env.PUBLIC_URL}/images/dubai.png`)}
-                        />
+                        {bucketListDestinations.slice(0, 6).map((destination) => (
+                            <BucketCard
+                                key={destination._id}
+                                image={`https://travel-server-yn4b.onrender.com/${destination.main_image}`}
+                                title={destination.name}
+                                description={destination.description}
+                                onClick={() => expandImage(`https://travel-server-yn4b.onrender.com/${destination.main_image}`)}
+                            />
+                        ))}
                     </div>
                     
                     <Link to="/bucket-list-locations" className="load-more-btn">Load More</Link>
