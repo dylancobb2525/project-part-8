@@ -4,6 +4,7 @@ import axios from 'axios';
 import PageHeader from '../components/PageHeader';
 import BucketCard from '../components/BucketCard';
 import AddDestination from '../components/AddDestination';
+import { getDestinationImageUrl } from '../utils/imageHelper';
 import '../styles/pages-styles/BucketList.css';
 
 function BucketList() {
@@ -67,15 +68,18 @@ function BucketList() {
 
                 <section id="bucket-list-content">
                     <div className="bucket-grid">
-                        {bucketListDestinations.slice(0, 6).map((destination) => (
-                            <BucketCard
-                                key={destination._id}
-                                image={`https://travel-server-yn4b.onrender.com/${destination.main_image}`}
-                                title={destination.name}
-                                description={destination.description}
-                                onClick={() => expandImage(`https://travel-server-yn4b.onrender.com/${destination.main_image}`)}
-                            />
-                        ))}
+                        {bucketListDestinations.slice(0, 6).map((destination) => {
+                            const imageUrl = getDestinationImageUrl(destination.main_image);
+                            return (
+                                <BucketCard
+                                    key={destination._id}
+                                    image={imageUrl}
+                                    title={destination.name}
+                                    description={destination.description}
+                                    onClick={() => expandImage(imageUrl)}
+                                />
+                            );
+                        })}
                     </div>
                     
                     <Link to="/bucket-list-locations" className="load-more-btn">Load More</Link>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import PageHeader from '../components/PageHeader';
 import '../styles/pages-styles/Locations.css';
+import { getDestinationImageUrl } from '../utils/imageHelper';
 
 function BucketListLocations() {
     const [destinations, setDestinations] = useState([]);
@@ -49,7 +50,7 @@ function BucketListLocations() {
                                 onClick={() => openModal(destination)}
                             >
                                 <img 
-                                    src={`https://travel-server-yn4b.onrender.com/${destination.main_image}`}
+                                    src={getDestinationImageUrl(destination.main_image)}
                                     alt={destination.name}
                                 />
                                 <div className="location-info">
@@ -71,7 +72,7 @@ function BucketListLocations() {
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <span className="close" onClick={closeModal}>&times;</span>
                         <img 
-                            src={`https://travel-server-yn4b.onrender.com/${selectedDestination.main_image}`}
+                            src={getDestinationImageUrl(selectedDestination.main_image)}
                             alt={selectedDestination.name}
                             className="modal-image"
                         />
