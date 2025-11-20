@@ -4,13 +4,15 @@ import axios from 'axios';
 import PageHeader from '../components/PageHeader';
 import BucketCard from '../components/BucketCard';
 import AddDestination from '../components/AddDestination';
+import DestinationDialog from '../components/DestinationDialog';
 import { getDestinationImageUrl } from '../utils/imageHelper';
 import '../styles/pages-styles/BucketList.css';
 
 function BucketList() {
-    const [popupImage, setPopupImage] = useState(null);
+    const [selectedDestination, setSelectedDestination] = useState(null);
     const [showAddDialog, setShowAddDialog] = useState(false);
     const [bucketListDestinations, setBucketListDestinations] = useState([]);
+    const [successMessage, setSuccessMessage] = useState("");
 
     useEffect(() => {
         loadBucketList();
@@ -38,12 +40,31 @@ function BucketList() {
         setBucketListDestinations((destinations) => [...destinations, newDestination]);
     };
 
-    const expandImage = (imgSrc) => {
-        setPopupImage(imgSrc);
+    const openDestinationDialog = (destination) => {
+        setSelectedDestination(destination);
     };
 
-    const closePopup = () => {
-        setPopupImage(null);
+    const closeDestinationDialog = () => {
+        setSelectedDestination(null);
+    };
+
+    const updateDestination = (updatedDestination) => {
+        setBucketListDestinations((destinations) =>
+            destinations.map((dest) =>
+                dest._id === updatedDestination._id ? updatedDestination : dest
+            )
+        );
+        setSuccessMessage("Destination updated successfully!");
+        setTimeout(() => setSuccessMessage(""), 3000);
+    };
+
+    const hideDestination = () => {
+        setBucketListDestinations((destinations) =>
+            destinations.filter((dest) => dest._id !== selectedDestination._id)
+        );
+        setSuccessMessage("Destination deleted successfully!");
+        setTimeout(() => setSuccessMessage(""), 3000);
+        setSelectedDestination(null);
     };
 
     return (
@@ -56,6 +77,19 @@ function BucketList() {
             
             <main id="main-content">
                 <button id="add-destination-btn" onClick={openAddDialog}>+ Add New Destination</button>
+
+                {successMessage && (
+                    <div style={{
+                        padding: '10px',
+                        margin: '10px 0',
+                        backgroundColor: '#4CAF50',
+                        color: 'white',
+                        borderRadius: '5px',
+                        textAlign: 'center'
+                    }}>
+                        {successMessage}
+                    </div>
+                )}
 
                 {showAddDialog ? (
                     <AddDestination 
@@ -76,7 +110,7 @@ function BucketList() {
                                     image={imageUrl}
                                     title={destination.name}
                                     description={destination.description}
-                                    onClick={() => expandImage(imageUrl)}
+                                    onClick={() => openDestinationDialog(destination)}
                                 />
                             );
                         })}
@@ -86,10 +120,17 @@ function BucketList() {
                 </section>
             </main>
             
-            {popupImage && (
-                <div id="image-popup" onClick={closePopup}>
-                    <img id="popup-img" src={popupImage} alt="Expanded view" />
-                </div>
+            {selectedDestination && (
+                <DestinationDialog
+                    _id={selectedDestination._id}
+                    name={selectedDestination.name}
+                    description={selectedDestination.description}
+                    category={selectedDestination.category}
+                    main_image={selectedDestination.main_image}
+                    closeDestinationDialog={closeDestinationDialog}
+                    updateDestination={updateDestination}
+                    hideDestination={hideDestination}
+                />
             )}
         </div>
     );

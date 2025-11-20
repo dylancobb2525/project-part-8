@@ -138,3 +138,138 @@
   }
 }
 
+.dialog-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.dialog-buttons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.dialog-buttons button:hover {
+  opacity: 0.9;
+}
+
+#destination-dialog {
+  display: block;
+}
+
+#destination-dialog-content {
+  padding: 20px;
+}
+
+#destination-dialog-content img {
+  max-width: 300px;
+  border-radius: 5px;
+}
+
+#edit-destination-form {
+  padding: 0;
+}
+
+#edit-destination-form h3 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+#edit-destination-form p {
+  margin-bottom: 15px;
+}
+
+#edit-destination-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #333;
+}
+
+#edit-destination-form input[type="text"],
+#edit-destination-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: inherit;
+  background-color: #f9f9f9;
+}
+
+#edit-destination-form input[type="text"]:focus,
+#edit-destination-form textarea:focus {
+  border-color: #4CAF50;
+  outline: none;
+  background-color: white;
+}
+
+#edit-destination-form textarea {
+  resize: vertical;
+}
+
+#edit-destination-form input[type="file"] {
+  padding: 5px;
+}
+
+#edit-destination-form button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#edit-destination-form form > p:last-child {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+#edit-destination-form form > p:last-child:not(:empty) {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+/* Delete dialog button styling */
+#destination-dialog-content .dialog-buttons button:first-child {
+  background-color: #f44336;
+}
+
+#destination-dialog-content .dialog-buttons button:first-child:hover {
+  background-color: #da190b;
+}
+
+#destination-dialog-content .dialog-buttons button:last-child {
+  background-color: #757575;
+}
+
+#destination-dialog-content .dialog-buttons button:last-child:hover {
+  background-color: #616161;
+}
+
+/* Result message styling for delete dialog */
+#destination-dialog-content p:last-child {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: 600;
+  text-align: center;
+}
+
+#destination-dialog-content p:last-child:not(:empty) {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+

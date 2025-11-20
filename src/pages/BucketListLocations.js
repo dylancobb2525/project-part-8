@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import PageHeader from '../components/PageHeader';
+import DestinationDialog from '../components/DestinationDialog';
 import '../styles/pages-styles/Locations.css';
 import { getDestinationImageUrl } from '../utils/imageHelper';
 
 function BucketListLocations() {
     const [destinations, setDestinations] = useState([]);
     const [selectedDestination, setSelectedDestination] = useState(null);
+    const [successMessage, setSuccessMessage] = useState("");
 
     useEffect(() => {
         loadDestinations();
@@ -24,11 +26,30 @@ function BucketListLocations() {
         }
     };
 
-    const openModal = (destination) => {
+    const openDestinationDialog = (destination) => {
         setSelectedDestination(destination);
     };
 
-    const closeModal = () => {
+    const closeDestinationDialog = () => {
+        setSelectedDestination(null);
+    };
+
+    const updateDestination = (updatedDestination) => {
+        setDestinations((dests) =>
+            dests.map((dest) =>
+                dest._id === updatedDestination._id ? updatedDestination : dest
+            )
+        );
+        setSuccessMessage("Destination updated successfully!");
+        setTimeout(() => setSuccessMessage(""), 3000);
+    };
+
+    const hideDestination = () => {
+        setDestinations((dests) =>
+            dests.filter((dest) => dest._id !== selectedDestination._id)
+        );
+        setSuccessMessage("Destination deleted successfully!");
+        setTimeout(() => setSuccessMessage(""), 3000);
         setSelectedDestination(null);
     };
 
@@ -41,13 +62,26 @@ function BucketListLocations() {
             />
             
             <main id="main-content">
+                {successMessage && (
+                    <div style={{
+                        padding: '10px',
+                        margin: '10px 0',
+                        backgroundColor: '#4CAF50',
+                        color: 'white',
+                        borderRadius: '5px',
+                        textAlign: 'center'
+                    }}>
+                        {successMessage}
+                    </div>
+                )}
+
                 <section id="locations-content">
                     <div className="locations-grid">
                         {destinations.map((destination) => (
                             <div 
                                 key={destination._id} 
                                 className="location-card-large"
-                                onClick={() => openModal(destination)}
+                                onClick={() => openDestinationDialog(destination)}
                             >
                                 <img 
                                     src={getDestinationImageUrl(destination.main_image)}
@@ -68,18 +102,16 @@ function BucketListLocations() {
             </main>
             
             {selectedDestination && (
-                <div className="modal" onClick={closeModal}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                        <span className="close" onClick={closeModal}>&times;</span>
-                        <img 
-                            src={getDestinationImageUrl(selectedDestination.main_image)}
-                            alt={selectedDestination.name}
-                            className="modal-image"
-                        />
-                        <h2>{selectedDestination.name}</h2>
-                        <p>{selectedDestination.description}</p>
-                    </div>
-                </div>
+                <DestinationDialog
+                    _id={selectedDestination._id}
+                    name={selectedDestination.name}
+                    description={selectedDestination.description}
+                    category={selectedDestination.category}
+                    main_image={selectedDestination.main_image}
+                    closeDestinationDialog={closeDestinationDialog}
+                    updateDestination={updateDestination}
+                    hideDestination={hideDestination}
+                />
             )}
         </div>
     );
