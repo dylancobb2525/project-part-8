@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import PageHeader from '../components/PageHeader';
 import BucketCard from '../components/BucketCard';
@@ -13,6 +12,7 @@ function BucketList() {
     const [showAddDialog, setShowAddDialog] = useState(false);
     const [bucketListDestinations, setBucketListDestinations] = useState([]);
     const [successMessage, setSuccessMessage] = useState("");
+    const [destinationsLoaded, setDestinationsLoaded] = useState(false);
 
     useEffect(() => {
         loadBucketList();
@@ -23,8 +23,10 @@ function BucketList() {
             const response = await axios.get('https://travel-server-yn4b.onrender.com/api/destinations');
             const bucketList = response.data.filter(dest => dest.category === "Bucket List");
             setBucketListDestinations(bucketList);
+            setDestinationsLoaded(true);
         } catch (error) {
             console.error('Error loading bucket list:', error);
+            setDestinationsLoaded(true);
         }
     };
 
@@ -76,7 +78,9 @@ function BucketList() {
             />
             
             <main id="main-content">
-                <button id="add-destination-btn" onClick={openAddDialog}>+ Add New Destination</button>
+                {destinationsLoaded && (
+                    <button id="add-destination-btn" onClick={openAddDialog}>+</button>
+                )}
 
                 {successMessage && (
                     <div style={{
@@ -102,7 +106,7 @@ function BucketList() {
 
                 <section id="bucket-list-content">
                     <div className="bucket-grid">
-                        {bucketListDestinations.slice(0, 6).map((destination) => {
+                        {bucketListDestinations.map((destination) => {
                             const imageUrl = getDestinationImageUrl(destination.main_image);
                             return (
                                 <BucketCard
@@ -115,8 +119,6 @@ function BucketList() {
                             );
                         })}
                     </div>
-                    
-                    <Link to="/bucket-list-locations" className="load-more-btn">Load More</Link>
                 </section>
             </main>
             
